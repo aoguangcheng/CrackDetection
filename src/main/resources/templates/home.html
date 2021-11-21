@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+		<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" />
+		<script src="/webjars/jquery/3.1.1/jqu	ery.min.js"></script>
+		<script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link rel="icon" href="favicon.ico" type="image/ico">
+		<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+		<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+		<meta name="author" content="yinqi">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/materialdesignicons.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="js/bootstrap-multitabs/multitabs.min.css">
+		<link href="css/style.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<div class="card">
+						<div class="card-header bg-primary">
+							<h4>待处理的视频数据</h4>
+							<ul class="card-actions">
+								<li>
+									<button type="button"><i class="mdi mdi-more"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<video th:if="${session.video} != null" th:src="@{'/videoUpload/'+${session.video}}"
+								   height="100%" width="100%" class="img-rounded center-block mdi-auto-fix" controls="controls">
+								您的浏览器不支持 video 标签。
+							</video>
+							<video th:if="${session.video} == null" src="/videoUpload/" class="img-rounded center-block mdi-auto-fix" height="100%" width="100%" controls="controls">
+								您的浏览器不支持 video 标签。
+							</video>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6">
+					<div class="card">
+						<div class="card-header bg-success">
+							<h4>视频数据的处理结果</h4>
+							<ul class="card-actions">
+								<li>
+									<button type="button"><i class="mdi mdi-more"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<video th:if="${session.video} != null" src="/videosClassA/VIDEO-2021-04-20-16-50-31.mp4"
+								   height="100%" width="100%" class="img-rounded center-block mdi-auto-fix" controls="controls">
+								您的浏览器不支持 video 标签。
+							</video>
+							<video th:if="${session.video} == null" src="/videoUpload/" class="img-rounded center-block" height="100%" width="100%" controls="controls">
+								您的浏览器不支持 video 标签。
+							</video>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-3 col-md-3">
+					<form method="post" action="/uploadImages" enctype="multipart/form-data">
+						<input type="file" name="file" required="required">
+						<br>
+						<input type="submit" class="btn btn-warning" value="上传图片">
+					</form>
+				</div>
+				<div class="col-xs-3 col-md-3">
+					<form method="post" action="/uploadVideos" enctype="multipart/form-data">
+						<input type="file" name="file" required="required">
+						<br>
+						<input type="submit" class="btn btn-success" value="上传视频">
+					</form>
+				</div>
+				<div class="col-xs-6 col-md-6">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>视频</td>
+								<td>VEDIO-2021-04-13-17-05-43.mp4</td>
+								<td>高风险</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>图片</td>
+								<td>IMG-2021-04-13-17-05-43.jpg</td>
+								<td>高风险</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<div class="card">
+						<div class="card-header bg-warning">
+							<h4>待检测的图片数据</h4>
+							<ul class="card-actions">
+								<li>
+									<button type="button"><i class="mdi mdi-more"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<img th:if="${session.image} != null" th:src="@{'/imageUpload/'+${session.image}}"
+								alt="待检测图片" class="img-rounded center-block" height="300px">
+							<img th:if="${session.image} == null" src="images/users/待检测图片.png" alt="待检测图片"
+								class="img-rounded center-block" height="300px">
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6">
+					<div class="card">
+						<div class="card-header bg-danger">
+							<h4>图片数据采样的检测结果</h4>
+							<ul class="card-actions">
+								<li>
+									<button type="button"><i class="mdi mdi-more"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<img th:if="${session.image} != null" th:src="@{'/imagesClassA/'+${session.image}}"
+								alt="已检测图片" class="img-rounded center-block" height="300px">
+							<img th:if="${session.image} == null" src="images/users/图片检测结果截图.png" alt="已检测图片"
+								class="img-rounded center-block" height="300px">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-6 col-md-3">
+					<a th:href="@{/toClassA}" href="#">
+						<div class="card bg-primary">
+							<div class="card-body clearfix">
+								<div class="pull-right">
+									<p class="h6 text-white m-t-0">Risk Level Ⅰ</p>
+									<p class="h3 text-white m-b-0 fa-1-5x">3 条</p>
+								</div>
+								<div class="pull-left">
+									<span class="img-avatar img-avatar-48 bg-translucent">
+										<i class="mdi mdi-approval fa-1-5x">
+										</i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a th:href="@{/toClassB}" href="#" class="">
+						<div class="card bg-purple">
+							<div class="card-body clearfix">
+								<div class="pull-right">
+									<p class="h6 text-white m-t-0">Risk Level Ⅱ</p>
+									<p class="h3 text-white m-b-0 fa-1-5x">7 条</p>
+								</div>
+								<div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i
+										class="mdi mdi-shield fa-1-5x"></i></span> </div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a th:href="@{/toClassC}" href="#">
+						<div class="card bg-success">
+							<div class="card-body clearfix">
+								<div class="pull-right">
+									<p class="h6 text-white m-t-0">Risk Level Ⅲ</p>
+									<p class="h3 text-white m-b-0 fa-1-5x">8 条</p>
+								</div>
+								<div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i
+										class="mdi mdi-alert-circle-outline fa-1-5x"></i></span> </div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a th:href="@{/toClassD}" href="#">
+						<div class="card bg-danger">
+							<div class="card-body clearfix">
+								<div class="pull-right">
+									<p class="h6 text-white m-t-0">Risk Level Ⅳ</p>
+									<p class="h3 text-white m-b-0 fa-1-5x">7 条</p>
+								</div>
+								<div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i
+										class="mdi mdi-alert fa-1-5x"></i></span> </div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-12">
+					<div class="card">
+						<div class="card-header bg-cyan">
+							<h4>检测历史</h4>
+							<ul class="card-actions">
+								<li>
+									<button type="button"><i class="mdi mdi-more"></i></button>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+								<tr >
+									<th>###</th>
+									<th>文件名</th>
+									<th>类型</th>
+									<th>检测日期</th>
+									<th>分类结果</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:each="detectionResult:${detectionResultList}">
+									<td th:text="${detectionResult.getNumber()}"></td>
+									<td th:text="${detectionResult.getFileName()}"></td>
+									<td th:text="${detectionResult.getFileType()}"></td>
+									<td th:text="${detectionResult.getDate()}"></td>
+									<td>
+										<span th:if="${detectionResult.getClassification()} eq 'slight'" th:text="${detectionResult.getClassification()}" class="label label-success"></span>
+										<span th:if="${detectionResult.getClassification()} eq 'dangerous'" th:text="${detectionResult.getClassification()}" class="label label-danger"></span>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
